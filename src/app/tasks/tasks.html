@@ -1,14 +1,20 @@
+@if (isAdding) {
+<app-task-form [userId]="userId" (close)="onCloseAddTask()" />
+}
+
 <section id="tasks">
   <header>
     <h2>{{ name }}</h2>
     <menu>
-      <button>Add Task</button>
+      <button (click)="startAddingTask()">Add Task</button>
     </menu>
   </header>
 
   <ul>
+    @for (task of selectedUserTasks; track task.id) {
     <li>
-        <app-task></app-task>
+      <app-task [task]="task"></app-task>
     </li>
+    }
   </ul>
 </section>
